@@ -10,7 +10,7 @@
 
     <meta-data
         android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyDR18cEGON2xEKFhstGrsXJ0H1mGd4HBfE"/>
+        android:value="AIzaSyDR18cEGON2xEKFhstGrsXJ0H1mGd4HBfE" />
 
     <application
         android:allowBackup="true"
@@ -19,12 +19,15 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".Dashboard"></activity>
+        <activity android:name=".WelcomeActivity"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".Dashboard" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>

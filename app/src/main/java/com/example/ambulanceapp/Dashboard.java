@@ -1,7 +1,11 @@
 package com.example.ambulanceapp;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
+import android.view.View;
 
 public class Dashboard extends AppCompatActivity {
 
@@ -9,5 +13,18 @@ public class Dashboard extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard);
+    }
+
+    public void CalUs(View view){
+//
+        String phone = "232";
+        Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
+        startActivity(intent);
+
+    }
+
+    public void GetNearByAmbulance(View view){
+        Intent intent = new Intent(Dashboard.this,  GoogleMapsActivity.class);
+        startActivity(intent);
     }
 }

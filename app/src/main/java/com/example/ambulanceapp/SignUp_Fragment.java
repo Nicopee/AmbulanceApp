@@ -1,10 +1,20 @@
 package com.example.ambulanceapp;
 
+import java.util.HashMap;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.example.ambulanceapp.R;
 
+import android.content.Intent;
 import android.content.res.ColorStateList;
 import android.content.res.XmlResourceParser;
 import android.os.Bundle;
@@ -19,6 +29,11 @@ import android.widget.TextView;
 import androidx.fragment.app.Fragment;
 import android.widget.Toast;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import static android.widget.Toast.LENGTH_SHORT;
+
 public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private static View view;
 	private static EditText fullName, emailId, mobileNumber, location,
@@ -26,6 +41,7 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 	private static TextView login;
 	private static Button signUpButton;
 	private static CheckBox terms_conditions;
+	private static String UrlReg = "https://www.cartugabane.com/Ambulance/register.php";
 
 	public SignUp_Fragment() {
 
@@ -66,7 +82,14 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 
 	// Set Listeners
 	private void setListeners() {
-		signUpButton.setOnClickListener(this);
+//		signUpButton.setOnClickListener(this);
+		signUpButton.setOnClickListener(new View.OnClickListener(){
+
+			@Override
+			public void onClick(View view) {
+              Register();
+			}
+		});
 		login.setOnClickListener(this);
 	}
 
@@ -136,4 +159,52 @@ public class SignUp_Fragment extends Fragment implements OnClickListener {
 					.show();
 
 	}
+
+	private void Register(){
+        signUpButton.setVisibility(View.GONE);
+		final String name = fullName.getText().toString().trim();
+		final String password = confirmPassword.getText().toString().trim();
+		final String email = emailId.getText().toString().trim();
+
+		StringRequest stringRequest = new StringRequest(Request.Method.POST, UrlReg, new Response.Listener<String>() {
+			@Override
+			public void onResponse(String response) {
+				try {
+					JSONObject jsonObject = new JSONObject(response);
+					String success = jsonObject.getString("success");
+					if (success.equals("1")){
+						Toast.makeText(getActivity() , "Account Created", LENGTH_SHORT).show();
+						signUpButton.setVisibility(View.VISIBLE);
+
+						Intent intent = new Intent(getContext(), Dashboard.class);
+						startActivity(intent);
+					}
+				} catch (JSONException e) {
+					e.printStackTrace();
+
+					Toast.makeText(getActivity() , "Error Occurred:"+e.toString(), Toast.LENGTH_LONG).show();
+					signUpButton.setVisibility(View.VISIBLE);
+				}
+			}
+		}, new Response.ErrorListener() {
+			@Override
+			public void onErrorResponse(VolleyError error) {
+				Toast.makeText(getActivity() , "Error:"+error.toString(), Toast.LENGTH_LONG).show();
+			}
+		})
+		{
+			@Override
+			protected Map<String, String> getParams() throws AuthFailureError {
+				Map<String,String> params = new HashMap<>();
+				params.put("name", name);
+				params.put("email", email);
+				params.put("password", password);
+				return params;
+			}
+		};
+		RequestQueue requestQueue = Volley.newRequestQueue(view.getContext());
+		requestQueue.add(stringRequest);
+	}
+
+
 }
