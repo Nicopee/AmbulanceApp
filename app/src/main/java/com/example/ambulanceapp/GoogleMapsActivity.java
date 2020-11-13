@@ -1,6 +1,7 @@
 package com.example.ambulanceapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.FragmentActivity;
@@ -10,7 +11,6 @@ import android.content.pm.PackageManager;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
-import android.os.Build;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -52,10 +52,6 @@ public class GoogleMapsActivity extends FragmentActivity implements
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_google_maps);
-
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            checkUserLocationPermission();
-        }
         SupportMapFragment mapFragment = (SupportMapFragment) getSupportFragmentManager()
                 .findFragmentById(R.id.map);
         mapFragment.getMapAsync(this);
@@ -64,9 +60,9 @@ public class GoogleMapsActivity extends FragmentActivity implements
 
     public void onClick(View v) {
 
-        String hospital = "hospital", ambulance = "ambulance", clinics = "clinics";
+        String hospital = "hospital", school = "school", restaurant = "restaurant";
         Object transferData[] = new Object[2];
-        GetNearbyAmbulance getNearbyPlaces = new GetNearbyAmbulance();
+        GetNearbyPlaces getNearbyPlaces = new GetNearbyPlaces();
         switch (v.getId()) {
             case R.id.search_address:
                 EditText addressField = (EditText) findViewById(R.id.location_search);
@@ -115,28 +111,7 @@ public class GoogleMapsActivity extends FragmentActivity implements
                 Toast.makeText(this, "Showing nearby hospitals", Toast.LENGTH_LONG).show();
 
                 break;
-            case R.id.schools_nearby:
-                mMap.clear();
-                String sUrl = getUrl(latitude, longitude, ambulance);
-                transferData[0] = mMap;
-                transferData[1] = sUrl;
 
-                getNearbyPlaces.execute(transferData);
-                Toast.makeText(this, "Searching for nearby ambulance", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "Showing nearby schools", Toast.LENGTH_LONG).show();
-
-                break;
-            case R.id.restaurants_nearby:
-                mMap.clear();
-                String rUrl = getUrl(latitude, longitude, clinics);
-                transferData[0] = mMap;
-                transferData[1] = rUrl;
-
-                getNearbyPlaces.execute(transferData);
-                Toast.makeText(this, "Searching for nearby clinics", Toast.LENGTH_SHORT).show();
-                Toast.makeText(this, "Showing nearby restaurants", Toast.LENGTH_LONG).show();
-
-                break;
         }
 
     }
@@ -256,6 +231,4 @@ public class GoogleMapsActivity extends FragmentActivity implements
     public void onConnectionFailed(@NonNull ConnectionResult connectionResult) {
 
     }
-
-
 }

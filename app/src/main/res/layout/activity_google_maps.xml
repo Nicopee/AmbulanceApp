@@ -52,22 +52,6 @@
             android:layout_marginLeft="100dp"
             android:onClick="onClick"
             android:src="@mipmap/hospital"/>
-        <ImageButton
-            android:id="@+id/schools_nearby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/hospitals_nearby"
-            android:layout_alignParentBottom="true"
-            android:src="@mipmap/school"
-            android:layout_toRightOf="@+id/hospitals_nearby" />
-        <ImageButton
-            android:id="@+id/restaurants_nearby"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_toEndOf="@+id/schools_nearby"
-            android:layout_alignParentBottom="true"
-            android:src="@mipmap/restaurant"
-            android:layout_toRightOf="@+id/schools_nearby" />
 
 
     </RelativeLayout>

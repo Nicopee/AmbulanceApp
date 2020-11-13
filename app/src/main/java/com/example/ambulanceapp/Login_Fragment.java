@@ -107,7 +107,17 @@ public class Login_Fragment extends Fragment implements OnClickListener {
 
     // Set Listeners
     private void setListeners() {
-        loginButton.setOnClickListener(this);
+
+        loginButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                checkValidation();
+                String email = emailid.getText().toString().trim();
+                String mPass = password.getText().toString().trim();
+                Login(email,mPass);
+            }
+        });
+
         forgotPassword.setOnClickListener(this);
         signUp.setOnClickListener(this);
 
@@ -208,7 +218,7 @@ public class Login_Fragment extends Fragment implements OnClickListener {
     }
 
     private void Login(final String email, final String password) {
-//        loginButton.setVisibility(View.GONE);
+        loginButton.setVisibility(View.GONE);
 //        loading.setVisibility(View.VISIBLE);
 
         StringRequest stringRequest = new StringRequest(Request.Method.POST, Url, new Response.Listener<String>() {
@@ -219,12 +229,10 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                     String success = jsonObject.getString("success");
 					JSONArray jsonArray = jsonObject.getJSONArray("login");
 
-                    Toast.makeText(getActivity() , "name:"+success, LENGTH_SHORT).show();
                     if (success.equals("1")) {
-                        for (int i = 0; i < jsonObject.length(); i++) {
+                        for (int i = 0; i < jsonArray.length(); i++) {
                            JSONObject object = jsonArray.getJSONObject(i);
                            String name = object.getString("name").trim();
-                           String email = object.getString("email").trim();
 
                             Toast.makeText(getActivity() , "name:"+name, LENGTH_SHORT).show();
 

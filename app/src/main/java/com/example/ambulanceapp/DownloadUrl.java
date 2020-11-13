@@ -40,8 +40,8 @@ public class DownloadUrl {
         }
 
         finally {
-             inputStream.close();
-             httpURLConnection.disconnect();
+            inputStream.close();
+            httpURLConnection.disconnect();
         }
 
         return Data;

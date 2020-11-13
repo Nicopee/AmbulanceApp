@@ -16,15 +16,14 @@ public class Dashboard extends AppCompatActivity {
     }
 
     public void CalUs(View view){
-//
         String phone = "232";
         Intent intent = new Intent(Intent.ACTION_DIAL, Uri.fromParts("tel", phone, null));
         startActivity(intent);
-
     }
 
     public void GetNearByAmbulance(View view){
         Intent intent = new Intent(Dashboard.this,  GoogleMapsActivity.class);
         startActivity(intent);
     }
+
 }

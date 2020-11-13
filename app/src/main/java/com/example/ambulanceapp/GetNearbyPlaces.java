@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 
-public class GetNearbyAmbulance extends AsyncTask<Object, String, String> {
+public class GetNearbyPlaces extends AsyncTask<Object, String, String> {
     private String googleplaceData, url;
     private GoogleMap mMap;
     @Override

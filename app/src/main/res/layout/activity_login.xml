@@ -84,15 +84,15 @@
                 android:text="@string/forgot"
                 android:textColor="@color/white"
                 android:textSize="14sp" />
-
-            <ProgressBar
-                android:id="@+id/loading"
-                android:visibility="gone"
-                android:layout_below="@+id/forgot_password"
-                android:layout_width="match_parent"
-                android:layout_marginTop="35dp"
-                android:layout_height="wrap_content"/>
         </LinearLayout>
+
+        <ProgressBar
+            android:id="@+id/loading"
+            android:visibility="gone"
+            android:layout_below="@+id/forgot_password"
+            android:layout_width="match_parent"
+            android:layout_marginTop="35dp"
+            android:layout_height="wrap_content"/>
 
         <Button
             android:id="@+id/loginBtn"

@@ -7,10 +7,8 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="com.google.android.providers.gsf.permission.READ_GSERVICES" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
 
-    <meta-data
-        android:name="com.google.android.geo.API_KEY"
-        android:value="AIzaSyDR18cEGON2xEKFhstGrsXJ0H1mGd4HBfE" />
 
     <application
         android:allowBackup="true"
@@ -19,6 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDR18cEGON2xEKFhstGrsXJ0H1mGd4HBfE" />
+
+        <activity android:name=".GoogleMapsActivity"></activity>
         <activity android:name=".WelcomeActivity"></activity>
         <activity android:name=".Profile" />
         <activity android:name=".Dashboard" />
