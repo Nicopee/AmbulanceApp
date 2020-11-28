@@ -235,8 +235,6 @@ public class Login_Fragment extends Fragment implements OnClickListener {
                            String name = object.getString("name").trim();
 
                             Toast.makeText(getActivity() , "name:"+name, LENGTH_SHORT).show();
-
-
                         }
                     }
                 } catch (JSONException e) {

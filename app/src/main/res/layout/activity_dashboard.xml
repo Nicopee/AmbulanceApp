@@ -120,6 +120,7 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <ImageView
+                    android:onClick="GetMedicalEscorts"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/cerclebackgroundpink"

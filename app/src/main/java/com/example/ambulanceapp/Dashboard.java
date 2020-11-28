@@ -26,4 +26,10 @@ public class Dashboard extends AppCompatActivity {
         startActivity(intent);
     }
 
+    public void GetMedicalEscorts(View view){
+        Intent medicalescorts = new Intent(Dashboard.this, MedicalEscorts.class);
+        startActivity(medicalescorts);
+
+    }
+
 }
