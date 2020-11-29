@@ -16,7 +16,11 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MedicalEscorts"></activity>
+        <activity android:name=".BookParamedics"></activity>
+        <activity android:name=".BookNurses" />
+        <activity android:name=".BookDoctors" />
+        <activity android:name=".Trainings" />
+        <activity android:name=".MedicalEscorts" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"
@@ -25,10 +29,10 @@
         <activity android:name=".GoogleMapsActivity" />
         <activity android:name=".WelcomeActivity" />
         <activity android:name=".Profile" />
-        <activity android:name=".Dashboard" />
+        <activity android:name=".MainActivity" />
         <activity android:name=".SignUp" />
         <activity android:name=".Login" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".Dashboard">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

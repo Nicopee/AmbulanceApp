@@ -161,6 +161,8 @@
                 android:orientation="vertical"
                 android:gravity="center">
                 <ImageView
+                    android:clickable="true"
+                    android:onClick="GetMyTrainings"
                     android:layout_width="64dp"
                     android:layout_height="64dp"
                     android:background="@drawable/cerclebackgroundpink"
